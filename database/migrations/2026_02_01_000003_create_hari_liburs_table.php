@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void
+    {
+        Schema::create('hari_liburs', function (Blueprint $table) {
+            $table->id();
+            $table->integer('tahun')->index();
+            $table->string('nama', 150);
+            $table->date('tanggal_mulai');
+            $table->date('tanggal_selesai');
+            $table->string('keterangan', 255)->nullable();
+            $table->string('warna', 20)->default('#b91c1c');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('hari_liburs');
+    }
+};
